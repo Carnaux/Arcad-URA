@@ -1,0 +1,5 @@
+export enum ActionLabels {
+  "TOGGLE_MQTT_CONNECTION_MODAL",
+  "MQTT_CONNECTED",
+  "RECEIVED_MQTT_MESSAGE",
+}
