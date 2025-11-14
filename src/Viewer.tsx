@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { GizmoHelper, GizmoViewcube, OrbitControls } from "@react-three/drei";
+import { UraRobot } from "./components/UraRobot";
 
 export const Viewer = () => {
   return (
@@ -11,6 +12,16 @@ export const Viewer = () => {
       {/* Lights */}
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
+
+      <UraRobot
+        scale={0.05}
+        position={[0, 0.9, 0]}
+        rotation={[-0.05, Math.PI / 2, 0]}
+      />
+
+      <GizmoHelper alignment="bottom-left" margin={[80, 80]}>
+        <GizmoViewcube />
+      </GizmoHelper>
     </Canvas>
   );
 };

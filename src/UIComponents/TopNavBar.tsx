@@ -1,6 +1,7 @@
 import { ActionLabels } from "../store/ActionsLabels";
 import { useStore } from "../store/Store";
 import "../styles/TopNavBar.scss";
+import { ModeSelect } from "./ModeSelect";
 
 export const TopNavBar = () => {
   const triggerAction = useStore((store) => store.triggerAction);
@@ -17,6 +18,7 @@ export const TopNavBar = () => {
       >
         Mqtt
       </button>
+      <ModeSelect />
     </div>
   );
 };

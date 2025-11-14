@@ -1,0 +1,24 @@
+.realtimeSideBarContainer {
+  height: 100%;
+  padding: 10px;
+  background-color: white;
+}
+
+.partsListContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  align-items: center;
+}
+
+.partsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+}

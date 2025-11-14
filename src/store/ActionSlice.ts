@@ -31,27 +31,13 @@ export const createActionSlice: StateCreator<
     }
   },
   getActions: (key: string) => get().actions.get(key),
-  triggerAction: (
-    trigger: ActionLabels | any,
-    targetName: string,
-    targetNodeName?,
-    event?
-  ) => {
+  triggerAction: (trigger: ActionLabels | any, targetName: string, event?) => {
     const selectedActions = get()
       .actions.get(targetName)
       ?.filter(
         (action) =>
           action.targetNode === undefined && action.trigger === trigger
       );
-    if (targetNodeName) {
-      const selectedSubActions = get()
-        .actions.get(targetName)
-        ?.filter(
-          (action) =>
-            action.targetNode === targetNodeName && action.trigger === trigger
-        );
-      selectedActions?.push(...(selectedSubActions || []));
-    }
     if (selectedActions) {
       selectedActions.forEach((action) => {
         action.cb(event);
@@ -67,7 +53,6 @@ export interface ActionSlice {
   triggerAction: (
     trigger: ActionLabels | any,
     targetName: string,
-    targetNodeName?: string,
     event?: Event | any
   ) => void;
 }

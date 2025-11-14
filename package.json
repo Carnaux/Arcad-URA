@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^10.0.6",
     "@react-three/fiber": "^9.1.0",
+    "@react-three/postprocessing": "^3.0.4",
     "@types/three": "^0.174.0",
     "@vitejs/plugin-basic-ssl": "^2.0.0",
     "mqtt": "^5.14.1",

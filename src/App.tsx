@@ -1,8 +1,8 @@
 import "./styles/App.scss";
-import { Viewer } from "./components/Viewer";
-import { RightSideBar } from "./components/RightSideBar";
-import { TopNavBar } from "./components/TopNavBar";
-import { ModalContainer } from "./components/ModalContainer";
+import { Viewer } from "./Viewer";
+import { RightSideBar } from "./UIComponents/RightSideBar";
+import { TopNavBar } from "./UIComponents/TopNavBar";
+import { ModalContainer } from "./UIComponents/ModalContainer";
 
 function App() {
   return (
