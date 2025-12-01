@@ -23,6 +23,9 @@ export const UraRobot = (props: UraModelProps) => {
   const setUraModelParts = useStore((store) => store.setUraModelParts);
   const gltf = useGLTF("./uraRobot.glb");
 
+  // Subscribe to payload history
+  const history = useStore((store) => store.payloadHistory);
+
   // This is so we can access those parts more easily outside of this component for whatever reason.
   useEffect(() => {
     if (gltf && !UraModelParts) {
@@ -79,7 +82,7 @@ export const UraRobot = (props: UraModelProps) => {
     // Show selected
     addAction({
       target: "realtimeList",
-      trigger: ActionLabels.SELECT_FROM_REALTIME_LIST,
+      trigger: ActionLabels.TOGGLE_SELECT_FROM_REALTIME_LIST,
       cb: (e) => {
         if (!UraModelParts) {
           return;
@@ -88,7 +91,7 @@ export const UraRobot = (props: UraModelProps) => {
         const part = UraModelParts[e.selected];
         part.traverse((child) => {
           if (child.name === `${e.selected}_select`) {
-            child.visible = true;
+            child.visible = !child.visible;
           }
         });
       },
@@ -112,6 +115,20 @@ export const UraRobot = (props: UraModelProps) => {
       },
     });
   }, [UraModelParts, addAction]);
+
+  // Move this to an scripts/ProcessPayload function
+  useEffect(() => {
+    if (history) {
+      const lastMessageStr = history[history.length - 1];
+      const lastMessage = JSON.parse(lastMessageStr);
+
+      Object.keys(lastMessage).forEach((key) => {
+        if (key === "motorDir") {
+          console.log(lastMessage[key]);
+        }
+      });
+    }
+  }, [history]);
 
   return <primitive {...props} object={gltf.scene} />;
 };

@@ -1,48 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { StateCreator } from "zustand";
 import { Action } from "./Action";
 import { ActionLabels } from "./ActionsLabels";
 
-export const createActionSlice: StateCreator<
-  ActionSlice,
-  [["zustand/subscribeWithSelector", never]],
-  []
-> = (set, get) => ({
-  actions: new Map(),
+export const createActionSlice = (set, get) => ({
+  actions: {} as Record<string, Action[]>,
+
   addAction: (action: Action, overwrite = true) => {
-    if (!overwrite) {
-      set({
-        actions: get().actions.set(action.target, [
-          ...(get().getActions(action.target) || []),
-          action,
-        ]),
-      });
-    } else {
-      // remove all the actions with the same trigger
-      const filteredStoredActions = get()
-        .getActions(action.target)
-        ?.filter((elem) => elem.trigger !== action.trigger);
-      set({
-        actions: get().actions.set(action.target, [
-          ...(filteredStoredActions || []),
-          action,
-        ]),
-      });
-    }
+    set((state) => {
+      const current = state.actions[action.target] ?? [];
+
+      let updated;
+      if (overwrite) {
+        updated = current.filter((a) => a.trigger !== action.trigger);
+        updated.push(action);
+      } else {
+        updated = [...current, action];
+      }
+
+      state.actions[action.target] = updated;
+    });
   },
-  getActions: (key: string) => get().actions.get(key),
-  triggerAction: (trigger: ActionLabels | any, targetName: string, event?) => {
-    const selectedActions = get()
-      .actions.get(targetName)
-      ?.filter(
-        (action) =>
-          action.targetNode === undefined && action.trigger === trigger
-      );
-    if (selectedActions) {
-      selectedActions.forEach((action) => {
-        action.cb(event);
-      });
-    }
+
+  getActions: (key: string) => get().actions[key],
+
+  triggerAction: (trigger, targetName, event) => {
+    const selectedActions = get().actions[targetName]?.filter(
+      (a) => a.targetNode === undefined && a.trigger === trigger
+    );
+
+    selectedActions?.forEach((a) => a.cb(event));
   },
 });
 

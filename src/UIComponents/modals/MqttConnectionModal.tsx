@@ -9,12 +9,14 @@ export const MqttConnectionModal = () => {
   const triggerAction = useStore((store) => store.triggerAction);
   const mqttInstance = useStore((store) => store.mqttInstance);
   const setMqttInstance = useStore((store) => store.setMqttInstance);
+  const pushToPayloadHistory = useStore((store) => store.pushToPayloadHistory);
 
   const [brokerEndpoint, setBrokerEndpoint] = useState<string>(
     "ws://localhost:9001"
   );
   const [subscribeChannel, setSubscribeChannel] =
     useState<string>("mqtt/local");
+  const [tickTime, setTickTime] = useState<number>(10);
 
   const handleOnConnect = () => {
     if (mqttInstance && !brokerEndpoint && !subscribeChannel) return;
@@ -35,7 +37,7 @@ export const MqttConnectionModal = () => {
     });
 
     instance.on("message", (topic, payload) => {
-      console.log(topic, payload);
+      pushToPayloadHistory(payload.toString());
     });
 
     instance.on("close", () => console.log("Connection closed"));
@@ -75,6 +77,14 @@ export const MqttConnectionModal = () => {
             value={subscribeChannel}
             onChange={(e) => {
               setSubscribeChannel(e.target.value);
+            }}
+          ></input>
+          <input
+            type="text"
+            placeholder="10"
+            value={tickTime}
+            onChange={(e) => {
+              setTickTime(parseInt(e.target.value));
             }}
           ></input>
           <button

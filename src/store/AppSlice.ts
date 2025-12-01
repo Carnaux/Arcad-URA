@@ -1,13 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mqtt from "mqtt";
-import { StateCreator } from "zustand";
 import { UraModelParts } from "../components/UraRobot";
 
-export const createAppSlice: StateCreator<
-  AppSlice,
-  [["zustand/subscribeWithSelector", never]],
-  []
-> = (set) => ({
+export const createAppSlice = (set) => ({
   mode: "realtime",
   setMode: (selectedMode: string) => {
     set({ mode: selectedMode });
@@ -20,6 +15,12 @@ export const createAppSlice: StateCreator<
   setUraModelParts: (modelParts: any) => {
     set({ uraModelParts: modelParts });
   },
+  payloadHistory: [],
+  pushToPayloadHistory: (payload: string) => {
+    set((state) => {
+      state.payloadHistory.push(payload);
+    });
+  },
 });
 
 export interface AppSlice {
@@ -29,4 +30,6 @@ export interface AppSlice {
   setMqttInstance: (instance: any) => void;
   uraModelParts: UraModelParts | null;
   setUraModelParts: (modelParts: UraModelParts) => void;
+  payloadHistory: string[];
+  pushToPayloadHistory: (payload: string) => void;
 }

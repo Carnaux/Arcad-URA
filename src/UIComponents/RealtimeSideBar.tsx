@@ -9,7 +9,7 @@ export const RealtimeSideBar = () => {
 
   const handleSelect = (e: string) => {
     // Trigger a deselect
-    if (selected != null) {
+    if (selected != null && selected !== e) {
       triggerAction(ActionLabels.DESELECT_FROM_REALTIME_LIST, "realtimeList", {
         selected: selected,
       });
@@ -18,9 +18,13 @@ export const RealtimeSideBar = () => {
     setSelected(e);
 
     // Then select
-    triggerAction(ActionLabels.SELECT_FROM_REALTIME_LIST, "realtimeList", {
-      selected: e,
-    });
+    triggerAction(
+      ActionLabels.TOGGLE_SELECT_FROM_REALTIME_LIST,
+      "realtimeList",
+      {
+        selected: e,
+      }
+    );
   };
 
   return (
