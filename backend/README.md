@@ -1,3 +1,5 @@
+https://community.element14.com/products/arduino/b/blog/posts/part-1-setting-up-a-mqtt-broker-locally
+
 To run the local mqtt broker:
 
 1. Install mosquitto from here https://mosquitto.org/download/
@@ -16,3 +18,10 @@ protocol websockets
 4. Open a fresh terminal and run `mosquitto -c /opt/homebrew/etc/mosquitto/mosquitto.conf -v` change the path to match your OS.
 
 To debug it, open a new terminal and run `mosquitto_sub -h localhost -p 1883 -t '#' -v`. This will listen to anything you send in your local broker.
+
+## Runnning the local sim
+
+1. Open a terminal in the backend folder `ARCAD-R3F/backend/`
+2. Run `npm run sim:start`
+
+You should see logs on what is being published. Check the `sever.js` file to undestand the simulation.
