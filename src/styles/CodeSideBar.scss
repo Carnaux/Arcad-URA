@@ -1,0 +1,141 @@
+.codeSideBarContainer {
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+
+  .add-controls {
+    flex-shrink: 0;
+    margin-bottom: 10px;
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      button {
+        padding: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.1s;
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+
+  .list-section {
+    flex-grow: 1; // Take up all remaining space
+    display: flex;
+    flex-direction: column;
+    min-height: 0; // Important: allows flex child to scroll
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .shape-list {
+      flex-grow: 1;
+      overflow-y: auto; // Enable vertical scrolling
+      padding-right: 8px;
+
+      /* Scrollbar Styling */
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .shape-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &.is-main {
+      background: #f0f9ff;
+      border-color: #bae6fd;
+    }
+
+    .shape-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      .id-badge {
+        font-size: 11px;
+        font-weight: bold;
+      }
+      .block-input {
+        width: 70px;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        padding: 2px 4px;
+        font-size: 12px;
+      }
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #94a3b8;
+      cursor: pointer;
+      &:hover {
+        color: #ef4444;
+      }
+    }
+  }
+
+  .thread-log {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; // Keep log at the very bottom
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 10px;
+    gap: 10px;
+
+    code {
+      display: block;
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      margin-top: 5px;
+      word-break: break-all;
+    }
+
+    button {
+      padding: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      background-color: white;
+    }
+
+    button:hover {
+      border-color: #10b981;
+    }
+  }
+}

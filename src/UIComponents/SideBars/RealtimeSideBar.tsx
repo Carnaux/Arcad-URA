@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../styles/RealtimeSideBar.scss";
-import { useStore } from "../store/Store";
-import { ActionLabels } from "../store/ActionsLabels";
+import "../../styles/RealtimeSideBar.scss";
+import { useStore } from "../../store/Store";
+import { ActionLabels } from "../../store/ActionsLabels";
 
 export const RealtimeSideBar = () => {
   const triggerAction = useStore((store) => store.triggerAction);

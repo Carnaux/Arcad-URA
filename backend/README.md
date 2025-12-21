@@ -8,7 +8,7 @@ To run the local mqtt broker:
 
 ```
 allow_anonymous true
-listener 1883
+listener 1883 your-machine-ip-address
 protocol mqtt
 
 listener 9001

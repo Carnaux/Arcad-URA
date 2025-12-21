@@ -1,8 +1,14 @@
 import { useStore } from "../store/Store";
-import { RealtimeSideBar } from "./RealtimeSideBar";
+import { CodeSideBar } from "./SideBars/CodeSideBar";
+import { RealtimeSideBar } from "./SideBars/RealtimeSideBar";
 
 export const RightSideBar = () => {
   const mode = useStore((store) => store.mode);
 
-  return <>{mode === "realtime" && <RealtimeSideBar />}</>;
+  return (
+    <>
+      {mode === "realtime" && <RealtimeSideBar />}
+      {mode === "code" && <CodeSideBar />}
+    </>
+  );
 };

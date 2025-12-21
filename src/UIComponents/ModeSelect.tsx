@@ -13,9 +13,10 @@ export const ModeSelect = () => {
       <p>Mode:</p>
       <select onChange={handleModeSelection}>
         <option value={"realtime"} label="realtime" />
-        <option value={"simulation"} label="simulation" />
+        <option value={"code"} label="code" />
+        {/* <option value={"simulation"} label="simulation" />
         <option value={"database"} label="database" />
-        <option value={"remote"} label="remote control" />
+        <option value={"remote"} label="remote control" /> */}
       </select>
     </div>
   );

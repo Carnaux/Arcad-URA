@@ -118,15 +118,16 @@ export const UraRobot = (props: UraModelProps) => {
 
   // Move this to an scripts/ProcessPayload function
   useEffect(() => {
-    if (history) {
+    if (history && history.length > 0) {
       const lastMessageStr = history[history.length - 1];
-      const lastMessage = JSON.parse(lastMessageStr);
+      console.log(lastMessageStr);
+      // const lastMessage = JSON.parse(lastMessageStr);
 
-      Object.keys(lastMessage).forEach((key) => {
-        if (key === "motorDir") {
-          console.log(lastMessage[key]);
-        }
-      });
+      // Object.keys(lastMessage).forEach((key) => {
+      //   if (key === "motorDir") {
+      //     console.log(lastMessage[key]);
+      //   }
+      // });
     }
   }, [history]);
 

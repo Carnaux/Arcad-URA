@@ -16,6 +16,7 @@ export const MqttConnectionModal = () => {
   );
   const [subscribeChannel, setSubscribeChannel] =
     useState<string>("mqtt/local");
+  const [publishChannel, setPublishChannel] = useState<string>("mqtt/robot");
   const [tickTime, setTickTime] = useState<number>(10);
 
   const handleOnConnect = () => {
@@ -31,7 +32,7 @@ export const MqttConnectionModal = () => {
       console.log("Connected to MQTT broker");
       instance.subscribe(subscribeChannel, (err) => {
         if (!err) {
-          instance.publish(subscribeChannel, "Browser client connected!!");
+          instance.publish(publishChannel, "Browser client connected!!");
         }
       });
     });
