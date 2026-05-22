@@ -1,23 +1,29 @@
 import { useStore } from "../store/Store";
-import "../styles/ModeSelect.scss";
 
 export const ModeSelect = () => {
-  const setMode = useStore((store) => store.setMode);
+	const setMode = useStore((store) => store.setMode);
 
-  const handleModeSelection = (e) => {
-    setMode(e.target.value);
-  };
+	const handleModeSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setMode(e.target.value);
+	};
 
-  return (
-    <div className="modeSelectContainer">
-      <p>Mode:</p>
-      <select onChange={handleModeSelection}>
-        <option value={"realtime"} label="realtime" />
-        <option value={"code"} label="code" />
-        {/* <option value={"simulation"} label="simulation" />
-        <option value={"database"} label="database" />
-        <option value={"remote"} label="remote control" /> */}
-      </select>
-    </div>
-  );
+	return (
+		<div className="flex flex-col items-center bg-[#d9d9d9] rounded-xl px-5 py-2 shadow-[2px_2px_6px_rgba(0,0,0,0.2)] border border-gray-300 z-[100]">
+			<p className="text-[13px] font-bold text-black mb-1">Mode</p>
+			<select
+				onChange={handleModeSelection}
+				className="bg-white rounded-full pl-3 pr-8 py-0.5 text-[13px] font-bold text-black shadow-[0px_2px_5px_rgba(0,0,0,0.15)] outline-none cursor-pointer border border-gray-200"
+			>
+				<option value={"realtime"} label="Realtime">
+					Realtime
+				</option>
+				<option value={"code"} label="Code">
+					Code
+				</option>
+				<option value={"simulation"} label="Simulation">
+					Simulation
+				</option>
+			</select>
+		</div>
+	);
 };
