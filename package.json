@@ -1,5 +1,5 @@
 {
-  "name": "arcadr3f",
+  "name": "arcadura",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "20": "^3.1.9",
     "@react-three/drei": "^10.0.6",
     "@react-three/fiber": "^9.1.0",
     "@react-three/postprocessing": "^3.0.4",
